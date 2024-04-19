@@ -2,6 +2,7 @@ import axios from "axios";
 import config from "../../config";
 import AppError from "../../error/AppError";
 import httpStatus from "http-status";
+import { TPayment } from "./ssl.type";
 
 const initPayment = async (paymentData: any) => {
   try {

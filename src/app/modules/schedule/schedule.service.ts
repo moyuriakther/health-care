@@ -5,6 +5,11 @@ import { TSchedule } from "./schedule.interface";
 import { paginationHelper } from "../../../helpers/paginationHelper";
 import { TUser } from "../../types/user";
 
+const convertDateTime = async (date: Date) => {
+  const offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() + offset);
+};
+
 const insertScheduleIntoDB = async (
   payload: TSchedule
 ): Promise<Schedule[]> => {
@@ -35,9 +40,16 @@ const insertScheduleIntoDB = async (
       )
     );
     while (startDateTime < endDateTime) {
+      // const schedule = {
+      //   startDateTime: startDateTime,
+      //   endDateTime: addMinutes(startDateTime, intervalTime),
+      // };
+      const s = await convertDateTime(startDateTime);
+      const e = await convertDateTime(addMinutes(startDateTime, intervalTime));
+
       const schedule = {
-        startDateTime: startDateTime,
-        endDateTime: addMinutes(startDateTime, intervalTime),
+        startDateTime: s,
+        endDateTime: e,
       };
       const existingSchedule = await prisma.schedule.findFirst({
         where: {
@@ -54,6 +66,7 @@ const insertScheduleIntoDB = async (
     }
     currentDate.setDate(currentDate.getDate() + 1);
   }
+
   return schedules;
 };
 const getAllFromDB = async (query: any, options: any, user: TUser) => {
@@ -123,6 +136,11 @@ const getScheduleById = async (id: string) => {
       id,
     },
   });
+  // console.log(
+  //   result?.startDateTime.getUTCHours() +
+  //     ":" +
+  //     result?.startDateTime.getUTCMinutes()
+  // );
   return result;
 };
 const deleteSchedule = async (id: string) => {

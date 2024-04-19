@@ -9,6 +9,9 @@ import { ScheduleRouter } from "../modules/schedule/schedule.router";
 import { DoctorScheduleRouter } from "../modules/doctorSchedule/doctorSchedule.router";
 import { AppointmentRouter } from "../modules/appointment/appointment.router";
 import { PaymentRoutes } from "../modules/payment/payment.router";
+import { PrescriptionRouter } from "../modules/prescription/prescription.router";
+import { ReviewRouter } from "../modules/review/review.router";
+import { MetaRouter } from "../modules/meta/meta.router";
 
 const router = Router();
 
@@ -52,6 +55,18 @@ const moduleRoutes = [
   {
     path: "/payment",
     route: PaymentRoutes,
+  },
+  {
+    path: "/prescription",
+    route: PrescriptionRouter,
+  },
+  {
+    path: "/review",
+    route: ReviewRouter,
+  },
+  {
+    path: "/meta",
+    route: MetaRouter,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
