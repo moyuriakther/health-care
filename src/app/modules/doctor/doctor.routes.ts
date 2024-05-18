@@ -20,7 +20,7 @@ router.delete(
 );
 router.delete(
   "/soft/:id",
-  auth(UserRole.admin, UserRole.super_admin),
+  // auth(UserRole.admin, UserRole.super_admin),
   DoctorController.softDeleteDoctor
 );
 

@@ -9,7 +9,7 @@ import cron from "node-cron";
 
 const app: Application = express();
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 
 app.use(express.json());
@@ -23,13 +23,13 @@ app.use("/api/v1", router);
 
 app.use(globalErrorHandler);
 
-cron.schedule("* * * * *", () => {
-  try {
-    AppointmentServices.cancelUnpaidAppointments();
-  } catch (error) {
-    console.log("Get an error", error);
-  }
-});
+// cron.schedule("* * * * *", () => {
+//   try {
+//     AppointmentServices.cancelUnpaidAppointments();
+//   } catch (error) {
+//     console.log("Get an error", error);
+//   }
+// });
 
 app.use(notFound);
 

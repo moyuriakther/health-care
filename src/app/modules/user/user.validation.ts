@@ -29,6 +29,16 @@ const createDoctor = z.object({
     email: z.string({
       required_error: "Email is required!",
     }),
+    address: z
+      .string({
+        required_error: "Address is required!",
+      })
+      .optional(),
+    experience: z
+      .number({
+        required_error: "Experience is required!",
+      })
+      .optional(),
     contactNumber: z.string({
       required_error: "Contact Number is required!",
     }),

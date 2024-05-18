@@ -18,7 +18,7 @@ router.post(
 );
 router.get(
   "/",
-  auth(UserRole.admin, UserRole.super_admin),
+  // auth(UserRole.admin, UserRole.super_admin),
   specialtiesController.getAllSpecialties
 );
 router.delete(

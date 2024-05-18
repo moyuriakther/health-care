@@ -60,7 +60,8 @@ const getAllFromDB = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: "Doctor Schedule Data Retrieved Successfully",
-      data: result,
+      data: result.result,
+      meta: result.meta,
     });
   }
 );

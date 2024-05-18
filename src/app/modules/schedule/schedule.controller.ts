@@ -30,7 +30,8 @@ const getAllFromDB = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: "Retrieved Schedules Data Successfully",
-      data: result,
+      data: result.data,
+      meta: result.meta,
     });
   }
 );

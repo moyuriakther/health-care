@@ -52,7 +52,7 @@ const getAllDoctorsFromDB = async (query: any, options: any) => {
   //   console.dir(andConditions, { depth: "infinity" });
 
   const whereConditions: Prisma.DoctorWhereInput = { AND: andConditions };
-  const result = await prisma.doctor.findMany({
+  const data = await prisma.doctor.findMany({
     where: whereConditions,
     skip,
     take: limit,
@@ -69,7 +69,7 @@ const getAllDoctorsFromDB = async (query: any, options: any) => {
   const total = await prisma.doctor.count({
     where: whereConditions,
   });
-  return { meta: { page, limit, total }, result };
+  return { meta: { page, limit, total }, data };
 };
 const getDoctorById = async (id: string) => {
   const result = await prisma.doctor.findUniqueOrThrow({

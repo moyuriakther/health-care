@@ -128,7 +128,7 @@ const getAllFromDB = async (query: any, options: any, user: TUser) => {
   const total = await prisma.schedule.count({
     where: { ...whereConditions, id: { notIn: doctorScheduleIds } },
   });
-  return { meta: { page, limit, total }, result };
+  return { meta: { page, limit, total }, data: result };
 };
 const getScheduleById = async (id: string) => {
   const result = await prisma.schedule.findUniqueOrThrow({

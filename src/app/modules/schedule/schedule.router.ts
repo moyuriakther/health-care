@@ -10,8 +10,16 @@ router.post(
   auth(UserRole.admin, UserRole.super_admin),
   ScheduleControllers.createSchedule
 );
-router.get("/", auth(UserRole.doctor), ScheduleControllers.getAllFromDB);
-router.get("/:id", auth(UserRole.doctor), ScheduleControllers.getScheduleById);
+router.get(
+  "/",
+  auth(UserRole.doctor, UserRole.admin, UserRole.super_admin),
+  ScheduleControllers.getAllFromDB
+);
+router.get(
+  "/:id",
+  auth(UserRole.doctor, UserRole.admin, UserRole.super_admin),
+  ScheduleControllers.getScheduleById
+);
 router.delete(
   "/:id",
   auth(UserRole.admin, UserRole.super_admin),
