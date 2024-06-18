@@ -64,7 +64,11 @@ const forgotPassword = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     success: true,
     message: "Check your email!",
-    data: null,
+    data: {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Check your email!",
+    },
   });
 });
 
@@ -77,7 +81,11 @@ const resetPassword = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     success: true,
     message: "Password Reset!",
-    data: null,
+    data: {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Password Reset!",
+    },
   });
 });
 

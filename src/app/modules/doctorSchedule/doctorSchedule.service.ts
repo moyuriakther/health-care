@@ -127,7 +127,7 @@ const deleteScheduleFromDB = async (scheduleId: string, user: TUser) => {
 const getAllFromDB = async (options: any, filters: any) => {
   const { limit, page, skip } = paginationHelper.calculatePagination(options);
   const { searchTerm, ...filterData } = filters;
-
+  console.log({ filterData });
   const andConditions: Prisma.DoctorSchedulesWhereInput[] = [];
   if (searchTerm) {
     andConditions.push({
